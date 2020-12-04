@@ -14,7 +14,7 @@ template <class M,class DBG > class Tiny
    Tiny (M *modulo,DBG *dbg, uint8_t _rst_ws=12,bool _dbg=false );
     void debug(bool _dbg);
     void begin(uint16_t _baudio=9600);
-    String comand(String _cmd);
+    String command(String _cmd);
     String ID();
     String PAC();
     uint16_t TEMP();
@@ -41,7 +41,7 @@ template <class M,class DBG > class Tiny
     char caracter = 0x00;
     char cadena_cad[30]; //= ""; esto causa un error al compilar para esp8266, mejor dejarlo vacio
     uint8_t i;
-    String comand2(String _cmd);
+    String command2(String _cmd);
     bool dbg;
     uint8_t rst_ws;
     uint32_t dato;

@@ -1,8 +1,8 @@
 #include <Tinyfox.h>
 
 //leo
-#define btn   13
-#define RXLED  17 
+#define btn   2
+#define RXLED  13
 
 //Tiny<HardwareSerial,Stream> wisol(&Serial1,&Serial,12,false);//leonardo //no usar este
 Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,false);//leonardo
@@ -19,7 +19,7 @@ void setup() {
 
   while(!Serial);  //comentar si usará una fuente de energía externa
 
- Serial.println("-Presione botón 17-");
+ Serial.println("-Presione botón 2-");
 }
 
 void loop() {
@@ -39,7 +39,7 @@ void loop() {
     digitalWrite(RXLED,HIGH);
     wisol.SLEEP();
     delay(3000);
-    Serial.println("-Presione botón 17-");
+    Serial.println("-Presione botón 2-");
   }
   
 }
