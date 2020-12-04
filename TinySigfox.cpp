@@ -36,12 +36,12 @@ void Tiny<M,DBG>::begin(uint16_t _baudio) {
 }
 
 template <class M,class DBG >
-String Tiny<M,DBG>::comand(String _cmd) {
+String Tiny<M,DBG>::command(String _cmd) {
   cmd = _cmd;
-  if (dbg) {
+  //if (dbg) {
      //UDebug->begin(baudio);
      //while (!Serial);
-  }
+  //}
 
   if (dbg){ Debug->print(ENV);Debug->println(cmd);}
 
@@ -67,7 +67,7 @@ String Tiny<M,DBG>::comand(String _cmd) {
   lastMsg = millis();
   do{
      long now = millis();
-     if(now - lastMsg > 70000){
+     if(now - lastMsg > 7000){//70 segundoes es mucho, mejor 7
           break;
        }
      if(Modulo->available()){
@@ -87,7 +87,7 @@ String Tiny<M,DBG>::comand(String _cmd) {
 }
 
 template <class M,class DBG >
-String Tiny<M,DBG>::comand2(String _cmd) {
+String Tiny<M,DBG>::command2(String _cmd) {
   cmd = _cmd;
   if (dbg) {
     //Debug->begin(baudio);
@@ -171,23 +171,23 @@ String Tiny<M,DBG>::comand2(String _cmd) {
 
 template <class M,class DBG >
   String Tiny<M,DBG>::ID() {
-    return Tiny<M,DBG>::comand(ATS + "I=10");
+    return Tiny<M,DBG>::command(ATS + "I=10");
   }
 
 template <class M,class DBG >
   String Tiny<M,DBG>::PAC() {
-    return Tiny<M,DBG>::comand(ATS + "I=11");
+    return Tiny<M,DBG>::command(ATS + "I=11");
   }
 
 template <class M,class DBG >
   uint16_t  Tiny<M,DBG>::TEMP() {
-    return String(Tiny<M,DBG>::comand(ATS + "T?")).toInt();
+    return String(Tiny<M,DBG>::command(ATS + "T?")).toInt();
   }
 
 template <class M,class DBG >
   uint16_t  Tiny<M,DBG>::VOLT() {
 
-    return  String(Tiny<M,DBG>::comand(ATS + "V?")).toInt();
+    return  String(Tiny<M,DBG>::command(ATS + "V?")).toInt();
   }
 
 template <class M,class DBG >
@@ -200,17 +200,17 @@ template <class M,class DBG >
 
 template <class M,class DBG >
   String Tiny<M,DBG>::SLEEP() {
-    return Tiny<M,DBG>::comand(ATS + "P=2");
+    return Tiny<M,DBG>::command(ATS + "P=2");
   }
 
 template <class M,class DBG >
   String Tiny<M,DBG>::SEND(uint32_t _dataint) {
     dataint = _dataint;
-    Tiny<M,DBG>::comand(ATS + GI);
-    Tiny<M,DBG>::comand(ATS + RC);
+    Tiny<M,DBG>::command(ATS + GI);
+    Tiny<M,DBG>::command(ATS + RC);
     char cadena_cad[15] = "";
     sprintf(cadena_cad, "SF=%08lx", dataint);
-    return Tiny<M,DBG>::comand(ATS + cadena_cad);
+    return Tiny<M,DBG>::command(ATS + cadena_cad);
   }
   
   template <class M,class DBG >
@@ -218,19 +218,19 @@ template <class M,class DBG >
     datastr = _datastr;
     if (datastr.length() > 24) return ("error");
     if (datastr.length() % 2 != 0)datastr = "0" + datastr;
-    Tiny<M,DBG>::comand(ATS + GI);
-    Tiny<M,DBG>::comand(ATS + RC);
-    return Tiny<M,DBG>::comand(ATS + "SF=" + datastr);
+    Tiny<M,DBG>::command(ATS + GI);
+    Tiny<M,DBG>::command(ATS + RC);
+    return Tiny<M,DBG>::command(ATS + "SF=" + datastr);
   }
   
   template <class M,class DBG >
   String Tiny<M,DBG>::SEND_RCV(uint32_t _dataint_rcv) {
     dataint_rcv = _dataint_rcv;
-    Tiny<M,DBG>::comand(ATS + GI);
-    Tiny<M,DBG>::comand(ATS + RC);
+    Tiny<M,DBG>::command(ATS + GI);
+    Tiny<M,DBG>::command(ATS + RC);
     char cadena_cad[20] = "";
     sprintf(cadena_cad, "SF=%08lx,1", dataint_rcv);
-    return Tiny<M,DBG>::comand2(ATS + cadena_cad);
+    return Tiny<M,DBG>::command2(ATS + cadena_cad);
   }
 
 template <class M,class DBG >
@@ -238,8 +238,8 @@ template <class M,class DBG >
     datastr_rcv = _datastr_rcv;
     if (datastr_rcv.length() > 24) return ("error");
     if (datastr_rcv.length() % 2 != 0)datastr_rcv = "0" + datastr_rcv;
-    Tiny<M,DBG>::comand(ATS + GI);
-    Tiny<M,DBG>::comand(ATS + RC);
+    Tiny<M,DBG>::command(ATS + GI);
+    Tiny<M,DBG>::command(ATS + RC);
     char cadena_cad[20] = "";
-    return Tiny<M,DBG>::comand2(ATS + "SF=" + datastr_rcv+",1");
+    return Tiny<M,DBG>::command2(ATS + "SF=" + datastr_rcv+",1");
   }

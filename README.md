@@ -1,2 +1,87 @@
-# Tinyfox
-Libreria Tinyfox Modem Wisol SFM10XX
+# Arduino Client for Wisol WSSFM10R4.
+
+This library provides a simple way to make use of Wisol radios, sends uplink and wait for and parse downlink messages
+
+## Examples
+
+The library comes with a number of example sketches for different architectures. See File > Examples > Tinyfox within the Arduino application.
+
+
+## Limitations
+
+
+
+## Compatible Hardware
+
+The library uses the Arduino Ethernet Client api for interacting with the
+underlying network hardware. This means it Just Works with a growing number of
+boards and shields, including:
+
+ - Arduino UNO and other ATmega328p microcontrollers
+ - Arduino Due
+ - Arduino Mega – via hardwareserial and SoftwareSerial
+ - Arduino Leonardo – via hardwareserial and SoftwareSerial
+ - ESP8266 – with the help of a softwareSerial
+ - ESP32   – via Serial2 (Tx and Rx pins are configurable)
+ - BLuePill and other STM32 devices
+ - many other boards should be compatible
+
+# API
+
+_Constructor_
+* **`Tiny<M,DBG>::Tiny(M *modulo,DBG *debug, uint8_t _rst_ws, bool _dbg)`** : this library make use of class templates to be able to work with many diferente types of Serial devices. it could use USART, UART, software serials and virtual serial ports for debuging and controlling the Wisol Module.
+at declaration its necessary to especify the type of serial object that will be used for communication with the module and for debug in that order.
+
+for example in using and Arduino Leonardo board, with the virtual serial port(USB) for debuging and the hadwareSerial on pins 0 and 1 for communication with the wisol module you need to declare:
+`Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,true);`
+or using a softwareSerial for the module:
+`Tiny<SoftwareSerial,Serial_> wisol(&mySerial,&Serial,3,true);`
+or even, just as an example, using the software serial for the moduel and the hardware serial for debug, although this is unpractical:
+`Tiny<SoftwareSerial,HardwareSerial> wisol(&mySerial,&Serial1,3,true);`
+more even, the other way around: softwareSerial for debug and hardwareSerial for the module:
+`Tiny<HardwareSerial,SoftwareSerial> wisol(&Serial1,&mySerial,3,true);`
+many examples are included.
+
+_debug mode_
+* **`void debug(bool _dbg)`** : enable or disable the debug prints at any time.
+
+
+_Tiny begin_
+* **`void begin(uint16_t _baudio)`** the default baud rate for the wisol its 9600. reset will be pulsed.
+
+
+_sending commands_
+* **`String command(String _cmd)`** send a command to the module and wait for an answer up to 7 seconds. mostly for intrenal use.
+
+_sending commands and getting downlinks_
+* **`String command2(String _cmd)`** send a command to the module and wait for an answer up to 70 seconds. mostly for intrenal use in dowlinks.
+
+_get ID number_
+* **`String ID()`** return the module's ID.
+
+_get PAC number_
+* **`String PAC()`** return the module's PAC.
+
+_get temperature_
+* **`uint16_t TEMP()`** return the module's temperature in celcius.
+
+_get module's supply voltage_
+* **`uint16_t VOLT()`** return the module's supply voltage in mV.
+
+_Reset the module_
+* **`void RST()`** reboot or wakeup the module by pulsing the reset pin.
+
+_put in deep sleep_
+* **`void SLEEP()`** put the module in deep sleep mode to save energy. 7uA are drawn in this mode. use `void RST()` to wake it up again.
+
+_send Uplinks_
+* **`String SEND(uint32_t _dataint)`** recive an 32 bits integer, format it to hexadecimal and transmit it to the sigfox plataform.
+* **`String SEND(String _datastr)`** recive an hexadecimal formatted string (up to 12 bytes) and transmit it to the sigfox plataform.
+
+_query for Downlinks_
+* **`String SEND_RCV(uint32_t _dataint)`** recive an 32 bits integer, format it to hexadecimal and transmit it to the sigfox plataform, then wait up to 70 seconds for a downlink answer and return it as a hexadecima String.
+* **`String SEND_RCV(String _datastr)`** recive an hexadecimal formatted string (up to 12 bytes) and transmit it to the sigfox plataform, then wait up to 70 seconds for a downlink answer and return it as a hexadecima String.
+
+## License
+
+This code is released under the Apache 2.0 License.
