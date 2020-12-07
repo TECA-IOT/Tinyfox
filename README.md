@@ -1,5 +1,5 @@
 # TINYFOX castellated Breakout board
-![](https://github.com/TECA-IOT/Ufox/blob/master/image/Ufox.jpg )
+![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/tinyfox.jpeg )
 
 # Arduino library Client for Wisol WSSFM10R4.
 
