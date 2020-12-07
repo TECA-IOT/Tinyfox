@@ -38,8 +38,8 @@
 | +3V   | VIN, Voltaje de entrada [2.7 - 3.6]Voltios    |
 | G   | GND     |
 
-### Castellated Pins
-Tiny Sigfox puede ser soldado directamente a una PCB, los orificios pasantes con ruptura permite la aplicacion de soldadura de estaño de manera sencilla
+### Pinout castellated
+Tiny Sigfox puede ser soldado directamente a una PCB, los orificios pasantes con ruptura permite la aplicacion de soldadura de estaño en los  bordes de manera sencilla
 
 | Pin| Descripcion                    |
 | --------------  | ------------------------------ |
