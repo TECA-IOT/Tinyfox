@@ -1,5 +1,56 @@
 # TINYFOX castellated Breakout board
+## Modem SFM10R4 Wisol  Sigfox RC4
 ![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/tinyfox.jpeg )
+
+## Caracteristicas
+
+- Board modem Sigfox.
+- Diseño simple y robusto para comunicaciones IoT de bajo consumo de energia. 
+- Incorpora a modem WISSOL SFM10R4 permite conexiones a red Sigfox para regione RC4.
+- Control mediante comando AT.
+- Antena Helicoidal integrada y opcion de conector U.FL a SMA para antenas externas.
+- Soporte para Uplink Downlink 
+- Ideal para aplicaciones con microcontroladores externos, Pic, Arduino, Arm, Raspberry Pi, etc. Comunicacion via  puerto UART Serial RX-TX a 9600 baudios, niveles de tension desde 2.5V a 4.2V. funcionamiento tipico de 3.3v
+- Puede ser alimentado directamente con 2 Baterias Alcalinas, o baterias de litio 3.7V 1S.
+
+## Caracteristicas Electricas
+
+| Descripcion | Unidad                    |
+| ------------- | ------------------------------ |
+| Voltaje Minimo  Vin |  2.5 VDC    |  
+| Voltaje Maximo  Vin |  3.8 VDC    |  
+| Voltaje  de operacion típica |  3.3 VDC    | 
+| Consumo en modo Deep Sleep   | 2.5uA     |
+| Potencia TX   | 23 dBm     |
+| Sensibilidad  Rx   | -129 dBm     |
+| Antena    | helicoidad 3 dBi      |
+| Frec. Uplink     | 920.8 MHz      |
+| Frec. Downlink     | 922.3 MHz      |
+
+## Pinout
+
+| Pin| Descripcion                    |
+| ------------- | ------------------------------ |
+| G |  GND    |  
+| Rx  |  Rx WSSFM11R4AT    | 
+| Tx   |  Tx WSSFM11R4AT     |
+| Rst   | Reset WSSFM11R4AT    |
+| +3V   | VIN, Voltaje de entrada [2.7 - 3.6]Voltios    |
+| G   | GND     |
+
+### Castellated Pins
+Tiny Sigfox puede ser soldado directamente a una PCB, los orificios pasantes con ruptura permite la aplicacion de soldadura de estaño de manera sencilla
+
+| Pin| Descripcion                    |
+| --------------  | ------------------------------ |
+| G   |    GND    |  
+| Radio Led  |  Rx WSSFM11R4AT     | 
+| GPIO 0     |  I/O ADC DAC     |
+| GPIO 1     |  I/O ADC     |
+| GPIO 4     |  I/O DAC     |
+| RX-LED     |  RX actividad    |
+| TX-LED     |  Tx actividad    |
+
 
 # Arduino library Client for Wisol WSSFM10R4.
 
