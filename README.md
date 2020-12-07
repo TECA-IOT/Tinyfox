@@ -52,8 +52,8 @@ Tiny Sigfox puede ser soldado directamente a una PCB, los orificios pasantes con
 | TX-LED     |  Tx actividad    |
 
 
-# Arduino library Client for Wisol WSSFM10R4.
-
+# Tinyfox library
+## Arduino Client for Wisol WSSFM10R4.
 This library provides a simple way to make use of Wisol radios, sends uplink and wait for and parse downlink messages
 
 ## Examples
