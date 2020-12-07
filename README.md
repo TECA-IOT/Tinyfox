@@ -4,12 +4,12 @@
 
 ## Caracteristicas
 
-- Board modem Sigfox.
-- Diseño simple y robusto para comunicaciones IoT de bajo consumo de energia. 
-- Incorpora a modem WISSOL SFM10R4 permite conexiones a red Sigfox para regione RC4.
+- Diseño simple y robusto para comunicaciones IoT de baja potencia. 
+- Modem WISSOL SFM10R4 permite conexiones a red Sigfox para region RC4.
 - Control mediante comando AT.
-- Antena Helicoidal integrada y opcion de conector U.FL a SMA para antenas externas.
-- Soporte para Uplink Downlink 
+- Antena Helicoidal integrada.
+- Conector U.FL a SMA para conexion de antenas externas (desoldar previamente antena helicoidal para su uso).
+- Soporte para Uplink y Downlink 
 - Ideal para aplicaciones con microcontroladores externos, Pic, Arduino, Arm, Raspberry Pi, etc. Comunicacion via  puerto UART Serial RX-TX a 9600 baudios, niveles de tension desde 2.5V a 4.2V. funcionamiento tipico de 3.3v
 - Puede ser alimentado directamente con 2 Baterias Alcalinas, o baterias de litio 3.7V 1S.
 
