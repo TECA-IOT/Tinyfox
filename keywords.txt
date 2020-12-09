@@ -1,0 +1,7 @@
+Tiny	KEYWORD1
+wisol	KEYWORD1
+mySerial	KEYWORD1
+HardwareSerial	LITERAL1
+Serial_	LITERAL1
+Stream	LITERAL1
+SoftwareSerial	LITERAL1
