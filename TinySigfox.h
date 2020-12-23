@@ -15,6 +15,7 @@ template <class M,class DBG > class Tiny
     void debug(bool _dbg);
     void begin(uint16_t _baudio=9600);
     String command(String _cmd);
+    String command2(String _cmd);
     String ID();
     String PAC();
     uint16_t TEMP();
@@ -32,16 +33,15 @@ template <class M,class DBG > class Tiny
     DBG * Debug ;
     #define baud_ws 9600
     uint8_t pin_rst_wisol=12;
-    const String ATS = "AT$";
-    const String ENV = "env:> ";
-    const String RCV = "<rec: ";
-    const String GI = "GI?";
-    const String RC = "RC";
+    String ATS = "AT$";
+    String ENV = "env:> ";
+    String RCV = "<rec: ";
+    String GI = "GI?";
+    String RC = "RC";
    
     char caracter = 0x00;
     char cadena_cad[30]; //= ""; esto causa un error al compilar para esp8266, mejor dejarlo vacio
     uint8_t i;
-    String command2(String _cmd);
     bool dbg;
     uint8_t rst_ws;
     uint32_t dato;
