@@ -49,7 +49,7 @@ String Tiny<M,DBG>::command(String _cmd) {
   long lastMsg = millis();
   caracter = 0x00;
   i = 0;
- for(int a=0;a<=40;a++){cadena_cad[a]= 0x00;}
+ for(int a=0;a<=30;a++){cadena_cad[a]= 0x00;}
   Modulo->println(cmd);
   do{
        long now = millis();
@@ -67,7 +67,7 @@ String Tiny<M,DBG>::command(String _cmd) {
   lastMsg = millis();
   do{
      long now = millis();
-     if(now - lastMsg > 7000){//70 segundoes es mucho, mejor 7
+     if(now - lastMsg > 70000){//70 segundoes es mucho, mejor 7
           break;
        }
      if(Modulo->available()){
