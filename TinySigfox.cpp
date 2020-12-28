@@ -7,16 +7,16 @@ Contibutor: Paul Portocarrero Hernandez
 
 
 template <class M,class DBG >
-Tiny<M,DBG>::Tiny(M *modulo,DBG *debug, uint8_t _rst_ws, bool _dbg) {
-  dbg = _dbg;
+Tiny<M,DBG>::Tiny(M *modulo,DBG *debug, uint8_t _rst_ws, bool _dbgMode) {
+  dbgMode = _dbgMode;
   pin_rst_wisol=_rst_ws;
   Modulo = modulo;
   Debug = debug;
 }
 
 template <class M,class DBG >
-void Tiny<M,DBG>::debug(bool _dbg) {
-  dbg = _dbg;
+void Tiny<M,DBG>::EnableDebug(bool _dbgMode) {
+  dbgMode = _dbgMode;
 }
 
 template <class M,class DBG >
@@ -43,13 +43,13 @@ String Tiny<M,DBG>::command(String _cmd) {
      //while (!Serial);
   //}
 
-  if (dbg){ Debug->print(ENV);Debug->println(cmd);}
+  if (dbgMode){ Debug->print(ENV);Debug->println(cmd);}
 
  //Debug->println(cmd);
   long lastMsg = millis();
   caracter = 0x00;
   i = 0;
- for(int a=0;a<=30;a++){cadena_cad[a]= 0x00;}
+ for(int a=0;a<=buffersize;a++){cadena_cad[a]= 0x00;}
   Modulo->println(cmd);
   do{
        long now = millis();
@@ -58,6 +58,12 @@ String Tiny<M,DBG>::command(String _cmd) {
        }
       if(Modulo->available()){
          caracter = Modulo->read();
+        if(i>buffersize){
+          delay(300);
+          while(Modulo->available()){Modulo->read();}
+          cadena_cad[0] = 0x00;
+          return "ERROR: OVERFLOW!!!";
+        }
          cadena_cad[i] = caracter;
         i++;
       }
@@ -72,6 +78,12 @@ String Tiny<M,DBG>::command(String _cmd) {
        }
      if(Modulo->available()){
         caracter = Modulo->read();
+        if(i>buffersize){
+          delay(300);
+          while(Modulo->available()){Modulo->read();}
+          cadena_cad[0] = 0x00;
+          return "ERROR: OVERFLOW!!!";
+        }
         cadena_cad[i] = caracter;
         i++;
     }
@@ -80,7 +92,7 @@ String Tiny<M,DBG>::command(String _cmd) {
   cadena_cad[i] = 0x00;
   cadena_cad[i- 1] = 0x00;
 
-  if (dbg) {Debug->print(RCV);Debug->println(cadena_cad); }
+  if (dbgMode) {Debug->print(RCV);Debug->println(cadena_cad); }
   caracter = 0x00;
   //Debug->println( strlen(cadena_cad));
   return cadena_cad;
@@ -89,17 +101,17 @@ String Tiny<M,DBG>::command(String _cmd) {
 template <class M,class DBG >
 String Tiny<M,DBG>::command2(String _cmd) {
   cmd = _cmd;
-  if (dbg) {
+  //if (dbgMode) {
     //Debug->begin(baudio);
    // while (!Serial);
-  }
-  if(dbg){ Debug->print(ENV);Debug->println(cmd);}
+  //}
+  if(dbgMode){ Debug->print(ENV);Debug->println(cmd);}
 
   caracter = 0x00;
 
   i = 0;
   uint32_t t = 0;
-  for(int a=0;a<=30;a++){cadena_cad[a]= 0x00;}
+  for(int a=0;a<=buffersize;a++){cadena_cad[a]= 0x00;}
   Modulo->println(cmd);
       Debug->println(cmd);
   long lastMsg = millis();
@@ -107,11 +119,6 @@ String Tiny<M,DBG>::command2(String _cmd) {
   
   while (true)
   {
-    //ESP.wdtDisable();//PANDA :3
-    //ESP.wdtEnable(WDTO_8S);
-    //ESP.wdtFeed();
-    //yield();
-    //delay(1);//k carajos, aqui no; en el while!
     long now = millis();
 
     if(Modulo->available()) {
@@ -164,7 +171,7 @@ String Tiny<M,DBG>::command2(String _cmd) {
    // Debug->println(cadena_cad);
   }
     //delay(100);
-    if (dbg) {Debug->print(RCV);Debug->println(cadena_cad);} 
+    if (dbgMode) {Debug->print(RCV);Debug->println(cadena_cad);} 
     caracter = 0x00;
     return String(cadena_cad);
   }
