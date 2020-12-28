@@ -5,14 +5,15 @@ Contibutor: Paul Portocarrero Hernandez
 #ifndef TINYSIGFOX_H
 #define TINYSIGFOX_H
 #include <Arduino.h>
+#define buffersize 40
 
 template <class M,class DBG > class Tiny
 {
   public:
     //Tiny();
     //Tiny(bool _dbg);
-   Tiny (M *modulo,DBG *dbg, uint8_t _rst_ws=12,bool _dbg=false );
-    void debug(bool _dbg);
+   Tiny (M *modulo,DBG *dbg, uint8_t _rst_ws=12,bool _dbgMode=false );
+    void EnableDebug(bool _dbgMode);
     void begin(uint16_t _baudio=9600);
     String command(String _cmd);
     String command2(String _cmd);
@@ -40,9 +41,9 @@ template <class M,class DBG > class Tiny
     String RC = "RC";
    
     char caracter = 0x00;
-    char cadena_cad[30]; //= ""; esto causa un error al compilar para esp8266, mejor dejarlo vacio
+    char cadena_cad[buffersize]; //= ""; esto causa un error al compilar para esp8266, mejor dejarlo vacio
     uint8_t i;
-    bool dbg;
+    bool dbgMode = false;
     uint8_t rst_ws;
     uint32_t dato;
     uint16_t baudio;
