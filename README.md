@@ -10,7 +10,7 @@
 
 `<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)>
 
-## libreria fritzing .fzpz Tinyfox:
+## librería fritzing .fzpz Tinyfox:
 `<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/Librer%C3%ADa-Tinyfox-para-Fritzing>
 
 
