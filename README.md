@@ -2,6 +2,15 @@
 ## Modem SFM10R4 Wisol  Sigfox RC4
 ![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/tinyfox.png )
 
+https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)
+
+## Visita la Wiki de TINYFOX: Documentación y ejemplos avanzados
+`<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)>
+
+## libreria fritzing .fzpz Tinyfox:
+`<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/Librer%C3%ADa-Tinyfox-para-Fritzing>
+
+
 ## Caracteristicas
 
 - Diseño simple y robusto para comunicaciones IoT de baja potencia. 
