@@ -2,9 +2,9 @@
 ## Modem SFM10R4 Wisol  Sigfox RC4
 ![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/tinyfox.png )
 
-https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)
-
 ## Visita la Wiki de TINYFOX: Documentación y ejemplos avanzados
+`<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)>
+## Cómo funciona el constructor de la libreria Tinyfox para arduino | library for radio wisol - seonji SFM10R2D, SFM10R4, SFM10R1, SFM10R3
 `<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)>
 
 ## libreria fritzing .fzpz Tinyfox:
