@@ -2,6 +2,18 @@
 ## Modem SFM10R4 Wisol  Sigfox RC4
 ![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/tinyfox.png )
 
+## Visita la Wiki de TINYFOX: Documentación y ejemplos avanzados
+`<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki>
+
+## Cómo funciona el constructor de la libreria Tinyfox para arduino 
+- Library for radio wisol - seonji SFM10R2D, SFM10R4, SFM10R1, SFM10R3
+
+`<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)>
+
+## librería fritzing .fzpz Tinyfox:
+`<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki/Librer%C3%ADa-Tinyfox-para-Fritzing>
+
+
 ## Caracteristicas
 
 - Diseño simple y robusto para comunicaciones IoT de baja potencia. 
@@ -77,7 +89,8 @@ boards and shields, including:
  - Arduino Leonardo – via hardwareserial and SoftwareSerial
  - ESP8266 – with the help of a softwareSerial
  - ESP32   – via Serial2 (Tx and Rx pins are configurable)
- - BLuePill and other STM32 devices
+ - Nucleo 64 STM32L476RG
+ - BluePill and other STM32 devices
  - many other boards should be compatible
 
 # API
