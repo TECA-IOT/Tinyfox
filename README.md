@@ -89,7 +89,8 @@ boards and shields, including:
  - Arduino Leonardo – via hardwareserial and SoftwareSerial
  - ESP8266 – with the help of a softwareSerial
  - ESP32   – via Serial2 (Tx and Rx pins are configurable)
- - BLuePill and other STM32 devices
+ - Nucleo 64 STM32L476RG
+ - BluePill and other STM32 devices
  - many other boards should be compatible
 
 # API
