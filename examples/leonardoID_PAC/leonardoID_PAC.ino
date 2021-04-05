@@ -1,18 +1,14 @@
 /*
-Derechos Reservados "Teca" 2020, autor Marco A. Caballero Rev.1.2
-
-UFOX  es un kit de desarrollo Sigfox basado en el microcontrolador 
-ATMEGA 32U4 y modem WSSFM10R4 la compilacion es compatible con  Arduino Leonardo
-más informacion en https://github.com/TECA-IOT/Ufox
 
 Extraer ID y PAC de modem wssfm10R4
 Estos Valores son requeridos para la activacion del dispositivo en la red Sigfox
 
 */
 
-#include <Ufox.h>
-
-Ufox wisol;
+#include <Tinyfox.h>
+#define btn   13
+#define RXLED  17
+Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,true);//leonardo
 
 void setup() {
   Serial.begin(115200);
