@@ -1,24 +1,19 @@
 /*
-Derechos Reservados "Teca" 2020, autor Marco A. Caballero Rev.1.2
 
-UFOX  es un kit de desarrollo Sigfox basado en el microcontrolador 
-ATMEGA 32U4 y modem WSSFM10R4 la compilacion es compatible con  Arduino Leonardo
-más informacion en https://github.com/TECA-IOT/Ufox
-
-  este ejemplo necesita un sensor de humedad de suelo capacitivo con salida analogica.
-  por ejemplo este de DF-robot o una similar https://wiki.dfrobot.com/Capacitive_Soil_Moisture_Sensor_SKU_SEN0193
+Tinyfox es un kit de desarrollo Sigfox basado en el modem WSSFM10R4
+más informacion en https://github.com/TECA-IOT/Tinyfox
 
   Para desempaquetar esta cadena de datos usted debe configuar un callback 
   personalizado en el backend de sigfox con  las variables correspondientes con las que 
   fueron declarados en este ejemplo.
 */
 
-#include <Ufox.h>
+#include <Tinyfox.h>
 
 #define btn   13
 #define RXLED  17 
 
-Ufox wisol;
+Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,true);//leonardo
 
 
 
