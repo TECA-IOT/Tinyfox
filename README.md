@@ -142,10 +142,10 @@ void loop() {
 
     digitalWrite(RXLED,LOW);
     Serial.println("Tx");
-    wisol.RST(); // se puelsa el reset para despertar al dispositivo del modo deep sleep
+    wisol.RST(); // se pulsa el reset para despertar al dispositivo del modo deep sleep
     
     uint32_t valor = 10;
-    Serial.println(wisol.SEND(valor)); // se transmite un valor a la plataforma sigfox e imprime el resultado
+    Serial.println(wisol.SEND(valor)); //Uplink. transmite un valor a la plataforma sigfox e imprime el resultado
     
     //String valor_recibido = wisol.SEND_RCV(valor); //aproximandamente esperar 1 minuto    
     //Serial.println(valor_recibido); 
