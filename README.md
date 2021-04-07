@@ -106,8 +106,58 @@ en le caso de UNO usarmos un <SoftwareSerial,...> para la comunicacion con le mo
 en el caso del Leonardo este posee comunicacion USB nativa, usa un Serial virtual sobre el porotcolo USB. en el framework de arduino este tipo de serial esta declaraddo como Serial_, y el Hardware serial no tiene ningun adaptador, esta conectao directamenta a los pines 1 y 0. por lo tanto el contructor queda asi Tiny<HardwareSerial,Serial_>
 para mas detalles y ejemplos con diferentes arquitecturas lea los ejemplos en examples>Archs>... tambien y visite el wiki en https://github.com/TECA-IOT/Tinyfox/wiki/como-funciona-el-constructor-(Arduino)
 
-### setup
-### loop
+### setup | ID PAC
+```javascript
+#define btn   2 //este pin necesita un boton a tierra
+#define RXLED  13 //display
+
+void setup() {
+
+  pinMode(btn,INPUT_PULLUP); //activa el pullup interno, necesario para etectar cuando el boton es presionado
+  pinMode(RXLED,OUTPUT);
+  
+  Serial.begin(115200);
+  wisol.begin(9600); //inicializa la comunicacion serial con le modulo tinyfox
+  
+  while(!Serial); //hace que el microcontrolador espere a que inicie la comunicacion serial antes de empezar la ejecucion del programa
+  //si el dispositivo va a funcionar con bateria hay que quitar esta linea
+  //esta linea solo es relevante en microcontroladores con USB nativo. en el Anduino UNO no tendra ningun efecto.
+  
+  delay(1000);
+
+  Serial.print("ID: ");
+  Serial.println(wisol.ID()); // solicita el ID al dispositivo. devolvera una cadena en hexadecimal
+    
+  Serial.print("PAC: ");
+  Serial.println(wisol.PAC());  // solicita el PAC de fabrica al dispositivo. devolvera una cadena en hexadecimal
+  
+}
+```
+### loop | Uplink
+
+```javascript
+void loop() {
+  
+  if(digitalRead(btn)==0){ //lee continuamente el estado del boton, cuando sea presionado, pin pasara a estado false o 0
+
+    digitalWrite(RXLED,LOW);
+    Serial.println("Tx");
+    wisol.RST(); // se puelsa el reset para despertar al dispositivo del modo deep sleep
+    
+    uint32_t valor = 10;
+    Serial.println(wisol.SEND(valor)); // se transmite un valor a la plataforma sigfox e imprime el resultado
+    
+    //String valor_recibido = wisol.SEND_RCV(valor); //aproximandamente esperar 1 minuto    
+    //Serial.println(valor_recibido); 
+    
+    digitalWrite(RXLED,HIGH);
+    wisol.SLEEP(); //pone el modulo a dormir /deep sleep
+    delay(3000);
+    Serial.println("-Presione botón 2-");
+  }
+  
+}
+```
 
 # API
 
