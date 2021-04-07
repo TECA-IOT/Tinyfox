@@ -98,8 +98,11 @@ boards and shields, including:
 ### Constructor
 en primer lugar necesitamos elejir que microcontrolador usaremos. en este ejemplo propondremos el Arduino UNO y el Leonardo ya que son los mas comunes.
 ahora debemos declarar un objeto del tipo Tiny para comunicanos con el modulo Tinyfox.
-* para el UNO declaramos un objetro SoftwareSerial y un Tiny `SoftwareSerial mySerial(10, 11); // RX, TX` `Tiny<SoftwareSerial,HardwareSerial> wisol(&mySerial,&Serial,3,true);` .
-* para el arduino leonardo podemos usar el hardware serial que tiene disponible en los pines 0 y 1. `Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,false);//leonardo`
+* para el UNO declaramos un objetro SoftwareSerial y un Tiny `SoftwareSerial mySerial(10, 11); // RX, TX` `Tiny<SoftwareSerial,HardwareSerial> wisol(&mySerial,&Serial,3,true);` . 
+* para el arduino leonardo podemos usar el hardware serial que tiene disponible en los pines 0 y 1. `Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,false);//leonardo` 
+
+![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/uno_tinyfox_bb.png)
+![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/Leonardo_tinyfox_bb.png)
 
 cuando llamamos al constructos de Tiny debemos especificar que tipo de puerto serial se usara para la comunicacion con el Tinyfox y el puerto de debuging entre signos de mayor y menor <>
 en le caso de UNO usarmos un <SoftwareSerial,...> para la comunicacion con le modulo y un HarwareSerial para el debug <...,HardwareSerial>  . este harware serial es el que esta conectado al adaptaor USB interno del UNO
