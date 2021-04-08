@@ -118,7 +118,7 @@ para mas detalles y ejemplos con diferentes arquitecturas lea los ejemplos en ex
 
 void setup() {
 
-  pinMode(btn,INPUT_PULLUP); //activa el pullup interno, necesario para etectar cuando el boton es presionado
+  pinMode(btn,INPUT_PULLUP); //activa el pullup interno, necesario para detectar cuando el boton es presionado
   pinMode(RXLED,OUTPUT);
   
   Serial.begin(115200);
