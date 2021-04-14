@@ -138,9 +138,68 @@ void setup() {
   
 }
 ```
+
 ### loop | Uplink
+```javascript
+void loop() {
+  
+  if(digitalRead(btn)==0){ //lee continuamente el estado del boton, cuando sea presionado, pin pasara a estado false o 0
+
+    digitalWrite(RXLED,LOW);
+    Serial.println("Tx");
+    wisol.RST(); // se pulsa el reset para despertar al dispositivo del modo deep sleep
+    
+    uint32_t valor = 10;
+    Serial.println(wisol.SEND(valor)); //Uplink. transmite un valor a la plataforma sigfox e imprime el resultado
+    
+    //String valor_recibido = wisol.SEND_RCV(valor); //aproximandamente esperar 1 minuto    
+    //Serial.println(valor_recibido); 
+    
+    digitalWrite(RXLED,HIGH);
+    wisol.SLEEP(); //pone el modulo a dormir /deep sleep
+    delay(3000);
+    Serial.println("-Presione botón 2-");
+  }
+  
+}
+```
+
+
+### Sketch completo
 
 ```javascript
+#include <Tinyfox.h>
+//a continuacion se crea un objeto de acuerdo con la arquitectura que se esta usando
+Tiny<HardwareSerial,Serial_> wisol(&Serial1,&Serial,12,true);//leonardo //
+
+//SoftwareSerial mySerial(10, 11); // RX, TX  ////arduino UNO
+//Tiny<SoftwareSerial,HardwareSerial> wisol(&mySerial,&Serial,3,true); ////arduino UNO
+
+#define btn   2 //este pin necesita un boton a tierra
+#define RXLED  13 //display
+
+void setup() {
+
+  pinMode(btn,INPUT_PULLUP); //activa el pullup interno, necesario para detectar cuando el boton es presionado
+  pinMode(RXLED,OUTPUT);
+  
+  Serial.begin(115200);
+  wisol.begin(9600); //inicializa la comunicacion serial con le modulo tinyfox
+  
+  while(!Serial); //hace que el microcontrolador espere a que inicie la comunicacion serial antes de empezar la ejecucion del programa
+  //si el dispositivo va a funcionar con bateria hay que quitar esta linea
+  //esta linea solo es relevante en microcontroladores con USB nativo. en el Anduino UNO no tendra ningun efecto.
+  
+  delay(1000);
+
+  Serial.print("ID: ");
+  Serial.println(wisol.ID()); // solicita el ID al dispositivo. devolvera una cadena en hexadecimal
+    
+  Serial.print("PAC: ");
+  Serial.println(wisol.PAC());  // solicita el PAC de fabrica al dispositivo. devolvera una cadena en hexadecimal
+  
+}
+
 void loop() {
   
   if(digitalRead(btn)==0){ //lee continuamente el estado del boton, cuando sea presionado, pin pasara a estado false o 0
