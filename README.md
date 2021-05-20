@@ -1,6 +1,6 @@
 # TINYFOX castellated Breakout board
 ## Modem SFM10R4 Wisol  Sigfox RC4
-![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/tinyfox.png )
+![](https://github.com/TECA-IOT/Tinyfox/blob/main/images/TINYFOX_2.png )
 
 ## Visita la Wiki de TINYFOX: Documentación y ejemplos avanzados
 `<link>` : <https://github.com/TECA-IOT/Tinyfox/wiki>
